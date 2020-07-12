@@ -2,8 +2,8 @@
   "compileOnSave": false,
   "compilerOptions": {
     "target": "ES2020",
-    "module": "ESNext",
-    "moduleResolution": "Classic",
+    "module": "CommonJS",
+    "moduleResolution": "Node",
     "resolveJsonModule": true,
     "esModuleInterop": true,
 
