@@ -1,0 +1,35 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "ESNext",
+    "moduleResolution": "Classic",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+
+    "rootDir": ".",
+    "baseUrl": ".",
+    "outDir": "./artifacts/out-tsc",
+
+    "charset": "utf8",
+    "newLine": "LF",
+    "declaration": false,
+    "removeComments": true,
+    "sourceMap": false,
+    "disableSizeLimit": true,
+
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+
+    "importHelpers": true,
+    "skipLibCheck": true,
+    "lib": ["DOM", "ES2018", "ESNext"],
+
+    "typeRoots": [ "node_modules/@types" ]
+  }
+}
