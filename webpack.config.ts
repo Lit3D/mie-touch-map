@@ -22,7 +22,9 @@ const PKG = require("./package.json")
 
 const postCSSPlugins = [
   require("postcss-import")(),
-]
+].concat(isProduction ? [
+  require("cssnano")({ preset: "default" }),
+] : [])
 
 export default {
   name: PKG.name,
