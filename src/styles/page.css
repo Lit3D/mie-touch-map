@@ -1,0 +1,19 @@
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  outline: none;
+}
+
+html, body {
+  height: 100%;
+  min-height: 100%;
+  max-height: 100%;
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  font-family: sans-serif;
+  font-size: 14px;
+  line-height: 1;
+}

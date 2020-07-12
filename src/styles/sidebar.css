@@ -1,0 +1,32 @@
+
+.sidebar {
+  position: relative;
+  display: grid;
+  overflow: hidden;
+
+  grid-template-columns: 0px 0px 0px;
+  grid-template-rows: 1fr;
+  min-width: 250px;
+}
+
+.sidebar__section {
+  grid-column: auto / span 1;
+  grid-row: 1 / span 1;
+  background: rgb(255 255 255);
+}
+
+.sidebar__section + .sidebar__section {
+  border-left: 2px solid rgb(242 242 242);
+}
+
+.sidebar[data-level="1"] {
+  grid-template-columns: 350px 0px 0px;
+}
+
+.sidebar[data-level="2"] {
+  grid-template-columns: 350px 350px 0px;
+}
+
+.sidebar[data-level="3"] {
+  grid-template-columns: 100px 350px 350px;
+}

@@ -1,0 +1,22 @@
+{
+  "name": "mie-touch-map",
+  "version": "1.0.0",
+  "description": "Museum of the History of Yekaterinburg touch stand with city maps",
+  "main": "dist/index.html",
+  "scripts": {
+    "build": "echo \"Error: no build specified\" && exit 1",
+    "clean": "rm -rf ./artifacts/*",
+    "start": "echo \"Error: no start specified\" && exit 1",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "https://github.com/Lit3D/mie-touch-map",
+  "homepage": "https://github.com/Lit3D/mie-touch-map",
+  "bugs": "https://github.com/Lit3D/mie-touch-map/issues",
+  "author": "Wisdman <wisdman@wisdman.io> (https://github.com/wisdman)",
+  "contributors": [
+    "Wisdman <wisdman@wisdman.io> (https://github.com/wisdman)",
+    "Yulia Fedyakina <iulia.fedyakina@gmail.com> (https://github.com/saigach)"
+  ],
+  "license": "unlicense",
+  "private": true
+}
