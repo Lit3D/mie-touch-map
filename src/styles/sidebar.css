@@ -33,7 +33,6 @@
   grid-template-columns: 100px 350px 350px;
 }
 
-<<<<<<< HEAD
 .sidebar__wrapper {
   overflow: auto;
   height: 100vh;
@@ -126,7 +125,8 @@ img {
 
 .mm-sections__icon {
   margin: 10px auto;
-=======
+}
+
 .sidebar__close_btn {
   display: block;
   box-sizing: content-box;
@@ -161,5 +161,4 @@ img {
   transform: rotate(90deg);
   fill: currentColor;
   cursor: inherit;
->>>>>>> e3f194f4b6d2007c7a4109535977fa99932d3298
 }
