@@ -33,6 +33,100 @@
   grid-template-columns: 100px 350px 350px;
 }
 
+.sidebar__wrapper {
+  overflow: auto;
+  height: 100vh;
+
+  font-family: "Lato";
+}
+
+.mm-sections {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.mm-sections__section {
+  margin: 10px;
+}
+
+.mm-sections__section-link {
+  text-align: center;
+  display: block;
+  font-family: "Lato";
+  font-weight: bold;
+  text-decoration: none;
+  color: #000;
+}
+
+.mm-sections__section-link:hover {}
+.mm-sections__section-link:active {}
+.mm-sections__section-link:focus {}
+
+.mm-sections__icon {
+  width: 64px;
+  height: 64px;
+  border: 4px double;
+  color: #ccc;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  
+}
+
+.mm-sections__title {
+
+}
+
+img {
+  width: 40px;
+}
+
+.mm-items {
+  list-style: none;
+  padding: 0;
+  margin: 0 20px;
+}
+
+.mm-item {
+  margin-bottom: 30px;
+}
+
+.mm-sidebar__header {
+  height: 240px;
+  background-size: cover;
+  position: relative;
+}
+
+.mm-sidebar__title {
+  font-size: 24px;
+  line-height: 20px;
+  font-weight: 600;
+  position: absolute;
+  bottom: 60px;
+  left: 40px;
+  color: #fff;
+  font-family: "Lato";
+}
+
+.mm-detail__text {
+  margin: 20px;
+}
+
+.sidebar[data-level='3'] .sidebar__section--level-1 .mm-sidebar__header {
+  display: none;
+}
+.sidebar[data-level='3'] .mm-sections {
+  flex-direction: column;
+}
+
+.mm-sections__icon {
+  margin: 10px auto;
+}
+
 .sidebar__close_btn {
   display: block;
   box-sizing: content-box;
