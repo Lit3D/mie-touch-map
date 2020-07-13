@@ -7,6 +7,8 @@
   grid-template-columns: 0px 0px 0px;
   grid-template-rows: 1fr;
   min-width: 250px;
+
+  box-shadow: 0 3px 6px rgb(0 0 0 / 0.16), 0 3px 6px rgb(0 0 0 / 0.23);
 }
 
 .sidebar__section {
@@ -29,4 +31,40 @@
 
 .sidebar[data-level="3"] {
   grid-template-columns: 100px 350px 350px;
+}
+
+.sidebar__close_btn {
+  display: block;
+  box-sizing: content-box;
+
+  position: relative;
+  top: 16px;
+
+  width: 24px;
+  height: 24px;
+  padding: 8px 0;
+  
+  border: 0 none;
+  border-radius: 0 4px 4px 0;
+
+  color: rgb(38 38 38);
+  background: rgb(255  255  255 / .85);
+  box-shadow: 0 1px 3px 0 rgb(38  38  38 / 0.5);
+
+  text-align: center;
+  cursor: pointer;
+
+  transform: translateX(-120%);
+  transition: transform 300ms linear;
+}
+
+.sidebar[data-level="2"] ~ .sidebar__close_btn,
+.sidebar[data-level="3"] ~ .sidebar__close_btn {
+  transform: translateX(0%);
+}
+
+.sidebar__close_btn svg {
+  transform: rotate(90deg);
+  fill: currentColor;
+  cursor: inherit;
 }
