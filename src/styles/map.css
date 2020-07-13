@@ -1,5 +1,5 @@
 
-.map__image {
+.map {
   width: 100%;
   min-width: 100%;
   max-width: 100%;
@@ -7,6 +7,18 @@
   min-height: 100%;
   max-height: 100%;
 
-  object-fit: cover;
-  object-position: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.map__image {
+  --image-width: 2350px;
+  --image-height: 2700px;
+
+  display: block;
+  position: absolute;
+  top: calc(50% - var(--image-width) / 2);
+  left: calc(50% - var(--image-height) / 2);
+  width: var(--image-width);
+  height: var(--image-height);
 }

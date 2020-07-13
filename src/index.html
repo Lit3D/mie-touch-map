@@ -11,7 +11,9 @@
 </head>
 <body class="layout">
 	<main class="layout__map map">
-		<img class="map__image" src="../assets/maps/1932.jpg">
+		<img class="map__image map__image--1910" data-level="1910" src="../assets/maps/1910.png">
+		<img class="map__image map__image--1932" data-level="1932" src="../assets/maps/1932.png">
+		<img class="map__image map__image--1947" data-level="1947" src="../assets/maps/1947.png">
 	</main>
 	<footer class="layout__timeline timeline"></footer>
 	<aside class="layout__sidebar sidebar" data-level="1">
@@ -19,7 +21,7 @@
 		<section class="sidebar__section sidebar__section--level-2">Level 2</section>
 		<section class="sidebar__section sidebar__section--level-3">Level 3</section>
 	</aside>
-	<button class="layout__sidebar-close sidebar__close_btn" onClick="document.querySelector('.sidebar').dataset.level=1">
+	<button class="layout__sidebar-close sidebar__close_btn">
 		<svg class="" width="24" height="24" viewBox="0 0 24 24">
 			<path d="M15.793 9.4l1.414 1.414L12 16.024l-5.207-5.21L8.207 9.4 12 13.195z"></path>
 		</svg>
