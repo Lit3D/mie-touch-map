@@ -1,7 +1,9 @@
 @import "variables.css";
+@import "fonts.css";
 
 @import "page.css";
 @import "layout.css";
 
 @import "sidebar.css";
 @import "map.css";
+@import "timeline.css";

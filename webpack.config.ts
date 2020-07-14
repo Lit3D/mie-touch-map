@@ -48,6 +48,7 @@ export default {
   output: {
     path: PATH("./artifacts"),
     filename: `js/[name].js`,
+    assetModuleFilename: "assets/[name][ext]",
     crossOriginLoading: false,
   },
 
@@ -63,6 +64,10 @@ export default {
       exclude: [
         PATH("./src/index.html"),
       ],
+    },{
+      // === Fonts ===
+      test: /\.woff2?$/i,
+      type: "asset",
     },{
       // === StylesS ===
       test: /\.css$/i,
@@ -105,8 +110,8 @@ export default {
     }),
 
     new MiniCssExtractPlugin({
-      filename: "css/[name].css",
-      chunkFilename: "css/[name].css",
+      filename: "[name].css",
+      chunkFilename: "[name].css",
     }),
 
     new HtmlWebpackPlugin({
@@ -119,6 +124,7 @@ export default {
     new ScriptExtHtmlWebpackPlugin({
       defaultAttribute: "defer"
     }),
+
   ].concat(isProduction ? [] : [
     // === Development mode plugins ===
     new SourceMapDevToolPlugin({
