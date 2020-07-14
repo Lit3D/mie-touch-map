@@ -11,11 +11,18 @@
 </head>
 <body class="layout">
 	<main class="layout__map map">
-		<img class="map__image map__image--1910" data-level="1910" src="../assets/maps/1910.png">
-		<img class="map__image map__image--1932" data-level="1932" src="../assets/maps/1932.png">
-		<img class="map__image map__image--1947" data-level="1947" src="../assets/maps/1947.png">
+		<img class="map__image map__image--1910" data-year="1910" src="../assets/maps/1910.png">
+		<img class="map__image map__image--1932" data-year="1932" src="../assets/maps/1932.png">
+		<img class="map__image map__image--1947" data-year="1947" src="../assets/maps/1947.png">
 	</main>
-	<footer class="layout__timeline timeline"></footer>
+	<footer class="layout__timeline">
+		<ul class="timeline">
+			<li class="timeline_item" data-year="1910">1910</li>
+			<li class="timeline_item" data-year="1932">1932</li>
+			<li class="timeline_item" data-year="1947">1947</li>
+			<div class="timeline_cursor">></div>
+  		</ul>
+	</footer>
 	<aside class="layout__sidebar sidebar" data-level="1">
 		<section class="sidebar__section sidebar__section--level-1">
 			<div class="sidebar__wrapper">
