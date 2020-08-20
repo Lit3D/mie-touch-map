@@ -21,4 +21,16 @@
   left: calc(50% - var(--image-height) / 2);
   width: var(--image-width);
   height: var(--image-height);
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+.map__image--transition {
+  z-index: 100;
+  opacity: 1;
+}
+
+.map__image--active {
+  z-index: 100;
+  opacity: 1;
 }

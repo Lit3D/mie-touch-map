@@ -3,6 +3,9 @@ export class TimelineComponent {
   #node: HTMLElement
   #cursor: HTMLElement
   #cursorTransitionClass: string
+  #mapsContainer: HTMLElement
+  //#mapTransitionClass: string = "map__image--transition"
+  #mapActiveClass: string = "map__image--active"
 
   #items: Array<number> = []
 
@@ -10,16 +13,20 @@ export class TimelineComponent {
   #isMove: boolean = false
 
   constructor({
-    root, cursor, cursorTransitionClass, itemsSelector
+    root, cursor, cursorTransitionClass, itemsSelector, mapsContainer
   }: {
     root: HTMLElement | string
     cursor: HTMLElement | string
     cursorTransitionClass: string
     itemsSelector: string
+    mapsContainer: HTMLElement | string
   }) {
     this.#node = root instanceof HTMLElement ? root : <HTMLElement>(document.querySelector(root))
     this.#cursor = cursor instanceof HTMLElement ? cursor : <HTMLElement>(this.#node.querySelector(cursor))
     this.#cursorTransitionClass = cursorTransitionClass
+
+    this.#mapsContainer = mapsContainer instanceof HTMLElement ? mapsContainer : <HTMLElement>(document.querySelector(mapsContainer))
+    this.#mapsContainer.children[0].classList.add(this.#mapActiveClass)
 
     this.#items = Array.from(this.#node.querySelectorAll<HTMLElement>(itemsSelector)).map((node, i) => {
       node.addEventListener("click", () => this.click(i))
@@ -28,6 +35,7 @@ export class TimelineComponent {
     this.#cursor.style.setProperty("--left", `${this.#items[0]}px`)
 
     console.log(this.#items)
+
 
     this.#cursor.addEventListener("pointerdown", this.pointerDown)
     window.addEventListener("pointermove", this.pointerMove, { passive: true })
@@ -60,6 +68,13 @@ export class TimelineComponent {
         j = i
       }
     }
+
+
+    // selMap.addEventListener('transitionend', () => {
+    //   selMap.classList.remove(this.#mapTransitionClass)
+    //   selMap.classList.add(this.#mapActiveClass)
+    //   if(oldMap) { oldMap.classList.remove(this.#mapActiveClass) }
+    // }, false)
     
     this.#cursor.classList.add(this.#cursorTransitionClass)
     this.#cursor.style.setProperty("--left", `${this.#items[j]}px`)
@@ -69,5 +84,12 @@ export class TimelineComponent {
   private click(i: number) {
     this.#cursor.classList.add(this.#cursorTransitionClass)
     this.#cursor.style.setProperty("--left", `${this.#items[i]}px`)
+
+    let sel = <HTMLElement>this.#node.children[i]
+    let selYear = sel.dataset.year
+    let oldMap = <HTMLElement>this.#mapsContainer.querySelector('.'+this.#mapActiveClass)
+    let selMap = <HTMLElement>this.#mapsContainer.querySelector(`[data-year~="${selYear}"]`)
+    selMap.classList.add(this.#mapActiveClass)
+    if(oldMap) { oldMap.classList.remove(this.#mapActiveClass) }
   }
 }
