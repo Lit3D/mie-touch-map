@@ -1,5 +1,6 @@
 
 import { TimelineComponent } from "./components"
+import { MapComponent } from "./components"
 
 
 void async function main(){
@@ -16,7 +17,10 @@ void async function main(){
     mapsContainer: ".layout__map"
   })
 
+  const map = new MapComponent()
+
   console.log(timeline)
+  console.log(map)
 }()
 
 
