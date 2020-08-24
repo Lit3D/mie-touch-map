@@ -43,7 +43,7 @@ export class TimelineComponent {
   }
 
   private pointerDown = ({offsetX}: PointerEvent) => {
-    this.#dX = Math.round(offsetX - this.#cursor.offsetWidth / 2) + this.#node.offsetLeft
+    this.#dX = Math.round(offsetX - this.#cursor.offsetWidth / 2)
     this.#cursor.classList.remove(this.#cursorTransitionClass)
     this.#isMove = true 
   }
@@ -56,24 +56,29 @@ export class TimelineComponent {
   private pointerUp = () => {
     
     const x: number = Number.parseInt(getComputedStyle(this.#cursor).getPropertyValue("--left"))
-    const y: number = Number.parseInt(getComputedStyle(this.#cursor).getPropertyValue("--top"))
-    if(y > (this.#node.offsetTop - 50)) {
+    //const y: number = Number.parseInt(getComputedStyle(this.#cursor).getPropertyValue("--top"))
+    //if(y > (this.#node.offsetTop - 50)) {
       this.#isMove = false
-      let nX: number = Infinity
+      let nX: number = Number.MAX_SAFE_INTEGER
       let j: number = 0
       
       for (let i = 0; i < this.#items.length; i++) {
-        if (x < this.#items[i] && this.#items[i] - x < nX) {
-          nX = this.#items[i] - x
-          j = i
-        } else if (x - this.#items[i] < nX) {
-          nX = x - this.#items[i]
-          j = i
+        if (x < this.#items[i]) {
+          if (this.#items[i] - x < nX) {
+            nX = this.#items[i] - x
+            j = i
+          }
+        } else {
+          if (x - this.#items[i] < nX) {
+            nX = x - this.#items[i]
+            j = i
+          }
         }
       }
       this.#cursor.classList.add(this.#cursorTransitionClass)
       this.#cursor.style.setProperty("--left", `${this.#items[j]}px`)
-    }
+      this.click(j)
+    //}
 
 
     // selMap.addEventListener('transitionend', () => {
@@ -94,7 +99,9 @@ export class TimelineComponent {
     let selYear = sel.dataset.year
     let oldMap = <HTMLElement>this.#mapsContainer.querySelector('.'+this.#mapActiveClass)
     let selMap = <HTMLElement>this.#mapsContainer.querySelector(`[data-year~="${selYear}"]`)
-    selMap.classList.add(this.#mapActiveClass)
-    if(oldMap) { oldMap.classList.remove(this.#mapActiveClass) }
+    if(oldMap !== selMap) {
+      selMap.classList.add(this.#mapActiveClass)
+      if(oldMap) { oldMap.classList.remove(this.#mapActiveClass) }
+    }
   }
 }
