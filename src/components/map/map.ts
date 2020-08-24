@@ -6,7 +6,7 @@ export class MapComponent {
   #panContainer: HTMLElement = <HTMLElement>document.querySelector('.layout__pan');
   //#imageUrl: string = "";
   #displayImage: HTMLImageElement = <HTMLImageElement>document.querySelector('.map__image.map__image--active');
-  #minScale:number = 1;
+  #minScale:number = 0.5;
   #maxScale:number = 4;
   //#imageWidth:number = 0;
   //#imageHeight:number = 0;
