@@ -56,36 +56,27 @@ export class TimelineComponent {
   private pointerUp = () => {
     
     const x: number = Number.parseInt(getComputedStyle(this.#cursor).getPropertyValue("--left"))
-    //const y: number = Number.parseInt(getComputedStyle(this.#cursor).getPropertyValue("--top"))
-    //if(y > (this.#node.offsetTop - 50)) {
-      this.#isMove = false
-      let nX: number = Number.MAX_SAFE_INTEGER
-      let j: number = 0
-      
-      for (let i = 0; i < this.#items.length; i++) {
-        if (x < this.#items[i]) {
-          if (this.#items[i] - x < nX) {
-            nX = this.#items[i] - x
-            j = i
-          }
-        } else {
-          if (x - this.#items[i] < nX) {
-            nX = x - this.#items[i]
-            j = i
-          }
+
+    this.#isMove = false
+    let nX: number = Number.MAX_SAFE_INTEGER
+    let j: number = 0
+    
+    for (let i = 0; i < this.#items.length; i++) {
+      if (x < this.#items[i]) {
+        if (this.#items[i] - x < nX) {
+          nX = this.#items[i] - x
+          j = i
+        }
+      } else {
+        if (x - this.#items[i] < nX) {
+          nX = x - this.#items[i]
+          j = i
         }
       }
-      this.#cursor.classList.add(this.#cursorTransitionClass)
-      this.#cursor.style.setProperty("--left", `${this.#items[j]}px`)
-      this.click(j)
-    //}
-
-
-    // selMap.addEventListener('transitionend', () => {
-    //   selMap.classList.remove(this.#mapTransitionClass)
-    //   selMap.classList.add(this.#mapActiveClass)
-    //   if(oldMap) { oldMap.classList.remove(this.#mapActiveClass) }
-    // }, false)
+    }
+    this.#cursor.classList.add(this.#cursorTransitionClass)
+    this.#cursor.style.setProperty("--left", `${this.#items[j]}px`)
+    this.click(j)
     
 
     //this.$emit("input", j)
