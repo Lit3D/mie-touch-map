@@ -9,7 +9,7 @@ export class SidebarComponent {
   #nodeSecondLevel: HTMLElement | null
   #nodeThirdLevel: HTMLElement | null
   #gridTemplateData: Array<number>
-  contentFile: string = "../../content/output.json"
+  contentFile: string = "/content/output.json"
   data: Array<object> = []
 
   constructor(node: HTMLElement | string) {
@@ -58,7 +58,6 @@ export class SidebarComponent {
       sectionsList += '</ul>'
       let itemsList = ""
       
-      let imagesList = ""
       section.filesOutput.forEach((file:any, index2:number) => {
         itemsList += `<li class="mm-item"> \
           <a onclick="_sidebar.changeLevel(3, ${index}, ${index2})"> \
@@ -66,15 +65,14 @@ export class SidebarComponent {
             ${file.tpContent.substring(0,100)}...
           </a> \
         </li>`
-
+        let imagesList = ""
         file.imagesOutput.forEach((image:any) => {
-          imagesList += `<div class="mm-image"><img src="${image.directory + image.base}" alt="${image.name}"></div>`
+          imagesList += `<div class="mm-image"><img src="${image.directory}/${image.base}" alt="${image.name}"></div>`
         })
 
         
-        detailList += `<div class="mm-item" id="mm-detail-${index}-${index2}"><div class="mm-sidebar__header mm-detail__header">
+        detailList += `<div class="mm-item mm-detail-item" id="mm-detail-${index}-${index2}"><div class="mm-sidebar__header mm-detail__header">
             <div class="mm-images-list">${imagesList}</div>
-            <div class="mm-detail__title mm-sidebar__title">${file.name}</div>
           </div>
           <div class="mm-detail__text">
           ${file.tpContent}  
@@ -94,16 +92,22 @@ export class SidebarComponent {
     }
   }
 
-  public changeLevel(level:string, section:string, item:string) {
+  public changeLevel(level:string, section:number, item:number) {
     if(document.querySelector('.sidebar')) {
       let sidebar:HTMLElement = <HTMLElement>document.querySelector('.sidebar')
       sidebar.dataset.level = level
 
-      if(section) {
+      if(section >= 0) {
+        document.querySelectorAll('.mm-items-section').forEach((sect:any) => {
+          sect.classList.remove("visible")
+        })
         let selSection:HTMLElement = <HTMLElement>document.querySelector('#mm-items-section-' + section)
         selSection.classList.add("visible")
       }
-      if(item) {
+      if(item >= 0) {
+        document.querySelectorAll('.mm-detail-item').forEach((itm:any) => {
+          itm.classList.remove("visible")
+        })
         let selItem:HTMLElement = <HTMLElement>document.querySelector('#mm-detail-' + section + '-' + item)
         selItem.classList.add("visible")
       }

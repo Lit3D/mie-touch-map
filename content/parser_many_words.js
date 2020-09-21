@@ -3,7 +3,7 @@ const path = require("path")
 const mammoth = require("mammoth")
 const request = require("request")
 
-const baseDir = "D:\\Work\\RMH\\WOW\\touch\\"
+const baseDir = __dirname
 
 async function getAllFilesRecursive(dir) {
   let output = []
@@ -70,7 +70,8 @@ void async function main() {
       const {value: content} = await mammoth.convertToHtml({path: file})
       const data = path.parse(file)
 
-      const tpContent = await typograf(content)
+      const tpContent = content
+      // const tpContent = await typograf(content)
 
       
       const imgFiles = (await getAllFilesRecursive(data.dir)).filter(fullPath => (path.extname(fullPath) === ".jpg" || path.extname(fullPath) === ".png"))
@@ -80,7 +81,7 @@ void async function main() {
         let imageOutput = {}
         imageOutput = {
           ...imgData,
-          directory: path.relative(baseDir, imgData.dir).replace(/\\+/g,'/')
+          directory: "../content/" + path.relative(baseDir, imgData.dir).replace(/\\+/g,'/')
         }
         imagesOutput.push(imageOutput)
       }

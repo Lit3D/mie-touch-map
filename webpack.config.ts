@@ -16,15 +16,16 @@ import HtmlWebpackPlugin from "html-webpack-plugin"
 import MiniCssExtractPlugin from "mini-css-extract-plugin"
 import ScriptExtHtmlWebpackPlugin from "script-ext-html-webpack-plugin"
 import TerserPlugin from "terser-webpack-plugin"
+import CopyPlugin from "copy-webpack-plugin"
 
 const PATH = (...p: Array<string>) => resolve(__dirname, ...p)
 const PKG = require("./package.json")
 
-const postCSSPlugins = [
-  require("postcss-import")(),
-].concat(isProduction ? [
-  require("cssnano")({ preset: "default" }),
-] : [])
+// const postCSSPlugins = [
+//   require("postcss-import")(),
+// ].concat(isProduction ? [
+//   require("cssnano")({ preset: "default" }),
+// ] : [])
 
 export default {
   name: PKG.name,
@@ -73,6 +74,9 @@ export default {
       test: /\.css$/i,
       use: [{
         loader: MiniCssExtractPlugin.loader,
+        options: {
+          publicPath: "/",
+        },
       },{
         loader: "css-loader",
         options: {
@@ -81,8 +85,13 @@ export default {
       },{
         loader: "postcss-loader",
         options: {
-          ident: "main",
-          plugins: postCSSPlugins
+          //ident: "main",
+          //plugins: postCSSPlugins,
+          postcssOptions: {
+            plugins: [
+              'postcss-preset-env',
+            ],
+          },
         }
       }]
     },{
@@ -133,6 +142,22 @@ export default {
     }),
 
     new HotModuleReplacementPlugin(),
+
+    new CopyPlugin({
+      patterns: [{
+        from: PATH("./content") + "/**/*.jpg",
+        to: "content"
+      },{
+        from: PATH("./content") + "/**/*.png",
+        to: "content"
+      },{
+        from: PATH("./content/output.json"),
+        to: "content"
+      },{
+        from: PATH("./assets") + "/**/*",
+        to: "assets"
+      }],
+    }),
   ]),
 
   optimization: {
@@ -167,13 +192,6 @@ export default {
   profile: false,
   devtool: isProduction ? false : "eval-cheap-source-map",
 
-  stats: "errors-warnings",
-
-  watch: true,
-  watchOptions: {
-    aggregateTimeout: 200,
-    poll: 1000,
-    ignored: ["node_modules/**"]
-  }
+  stats: "errors-warnings"
 
 } as Configuration

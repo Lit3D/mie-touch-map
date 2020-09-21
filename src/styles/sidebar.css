@@ -99,7 +99,7 @@ img {
 }
 
 .mm-sidebar__header {
-  height: 240px;
+  /*height: 240px;*/
   background-size: cover;
   position: relative;
 }
@@ -170,6 +170,11 @@ img {
   display: none;
 }
 
-.mm-items-section:not(.visible) .mm-item:not(.visible) {
+.mm-detail-item:not(.visible) {
   display: none;
+}
+
+.mm-image img {
+  width: auto;
+  max-width: 100%;
 }
