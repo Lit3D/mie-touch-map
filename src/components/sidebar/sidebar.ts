@@ -65,7 +65,7 @@ export class SidebarComponent {
           thumb = `<div class="mm-image-thumb"><img src="${file.imagesOutput[0].directory}/${file.imagesOutput[0].base}" alt="${file.imagesOutput[0].name}"></div>`
         }
         itemsList += `<li class="mm-item"> \
-          <a onclick="_sidebar.changeLevel(3, ${index}, ${index2})"> \
+          <a class="mm-item-link" onclick="_sidebar.changeLevel(3, ${index}, ${index2})"> \
             ${thumb}
             <div class="mm-detail-short">${file.tpContent}</div>
             
@@ -95,11 +95,6 @@ export class SidebarComponent {
     if(this.#nodeFirstLevel && this.#nodeThirdLevel) {
       this.#nodeFirstLevel.innerHTML = sectionsList
       this.#nodeThirdLevel.innerHTML = detailList
-
-      const mySiema = new Siema({
-  selector: '.siema'
-})
-      console.log(mySiema)
     }
   }
 
@@ -121,6 +116,10 @@ export class SidebarComponent {
         })
         let selItem:HTMLElement = <HTMLElement>document.querySelector('#mm-detail-' + section + '-' + item)
         selItem.classList.add("visible")
+          const mySiema = new Siema({
+            selector: '#mm-detail-' + section + '-' + item +' .siema'
+          })
+      console.log(mySiema)
       }
     }
     return false
