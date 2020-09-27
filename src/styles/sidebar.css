@@ -15,12 +15,13 @@
   grid-column: auto / span 1;
   grid-row: 1 / span 1;
   background: rgb(255 255 255);
+  border-left: 2px solid rgb(242 242 242);
+  overflow: auto;
   
 }
 
 .sidebar__section + .sidebar__section {
-  border-left: 2px solid rgb(242 242 242);
-  overflow: auto;
+
 }
 
 .sidebar[data-level="1"] {
@@ -36,9 +37,6 @@
 }
 
 .sidebar__wrapper {
-  overflow: auto;
-  height: 100vh;
-
   font-family: "Lato";
 }
 
@@ -91,11 +89,11 @@ img {
 .mm-items {
   list-style: none;
   padding: 0;
-  margin: 0 20px;
 }
 
 .mm-item {
-  margin-bottom: 30px;
+  padding: 20px;
+  border-bottom: 2px solid rgb(242 242 242);
 }
 
 .mm-sidebar__header {
@@ -177,4 +175,54 @@ img {
 .mm-image img {
   width: auto;
   max-width: 100%;
+}
+
+/* total width */
+.sidebar__section::-webkit-scrollbar {
+    background-color: #fff;
+    width: 16px;
+}
+
+/* background of the scrollbar except button or resizer */
+.sidebar__section::-webkit-scrollbar-track {
+    background-color: #fff;
+}
+
+/* scrollbar itself */
+.sidebar__section::-webkit-scrollbar-thumb {
+    background-color: #babac0;
+    border-radius: 16px;
+    border: 4px solid #fff;
+}
+
+/* set button(top and bottom of the scrollbar) */
+.sidebar__section::-webkit-scrollbar-button {
+    display:none;
+}
+
+.mm-image-thumb {
+  float: right;
+  margin-left: 20px;
+}
+
+.mm-image-thumb img {
+  width: 100px;
+}
+
+.mm-detail-short {
+  height: 300px;
+  overflow: hidden;
+  position: relative;
+}
+
+.mm-detail-short:after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background: linear-gradient(to bottom,rgba(255,255,255,0) 0,rgba(255,255,255,.1) 34%,rgba(255,255,255,.7) 100%);
+    z-index: 10;
 }

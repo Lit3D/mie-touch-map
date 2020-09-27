@@ -65,6 +65,16 @@ void async function main() {
     personName = dir
 
     const filesOutput = []
+
+    const imgFiles = (await fs.readdir(dirData)).filter(fullPath => (path.extname(fullPath) === ".svg" || path.extname(fullPath) === ".png"))
+    let icon = {}
+      for (const imgfile of imgFiles) {
+        const imgData = path.parse(imgfile)
+        icon = {
+          ...imgData,
+          directory: "../content/" + path.relative(baseDir, imgData.dir).replace(/\\+/g,'/')
+        }
+      }
    
     for (const file of docxFiles) {
       const {value: content} = await mammoth.convertToHtml({path: file})
@@ -100,6 +110,7 @@ void async function main() {
 
     const outObj = {
       name: personName,
+      icon: icon,
       directory: path.relative(baseDir, dirData).replace(/\\+/g,'/'),
       filesOutput
     }

@@ -1,6 +1,7 @@
 
 const ANIMATION_PROPERTY = "grid-template-columns"
 const ANIMATION_STEP_DELTA = 40;
+import Siema from 'siema';
 
 export class SidebarComponent {
 
@@ -50,7 +51,7 @@ export class SidebarComponent {
       sectionsList += `<li class="mm-sections__section"> \
         <a class="mm-sections__section-link" onclick="_sidebar.changeLevel(2, ${index})"> \
           <div class="mm-sections__icon"> \
-            <img src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGhlaWdodD0iNTEycHgiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTI7IiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiB3aWR0aD0iNTEycHgiIHhtbDpzcGFjZT0icHJlc2VydmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxnIGlkPSJfeDM5XzJfeDJDX19tb3VzdGFjaGVfeDJDX19IaXBzdGVyX3gyQ19fbW92ZW1iZXJfeDJDX19tYWxlX3gyQ19fbWVuIj48Zz48cGF0aCBkPSJNMjk2LjI1NywxOTEuODIyYzIuMzIyLTAuMDIsNC43MDUsMC4yNjEsNy4xMjgsMC44ODEgICAgYzEzLjE5MywzLjMwNCwzNS45MzgsMjMuMzY0LDYwLjU0Myw0NS4wNjZjMzMuNDc0LDI5LjU1MSw3MC4zNzIsNjIuMTA1LDkzLjkxOCw2MS4zODVjMTMuODM0LTAuNDIxLDIyLjk2My0xMS40NzMsMjQuMTQ0LTM5LjU0MSAgICBjNi41ODcsMTguNDM4LDQuNjg1LDMyLjAzMy0yLjk4Myw0MS41MjJjLTkuMTA4LDExLjI3MS0yNi40MDcsMTcuMTE4LTQ3LjQ0OCwxOC42NGMtMjEuNDQzLDEuNTQxLTQ2LjY0OC0xLjQwMS03MS4xMzQtNy42NjggICAgYy0xOS41Mi00Ljk4NS0zOC41NC0xMi4wNTMtNTQuNzc3LTIwLjU4MmMtMC4xNC0wLjExOS0wLjI4LTAuMjItMC40NjEtMC4zMmMtMTQuMzc1LTcuNjQ3LTI2LjU0OC0xNi40NzctMzQuODc2LTI2LjAyNiAgICBjLTcuNDQ3LTguNTA5LTExLjc5Mi0xNy41NzgtMTEuODUyLTI2Ljg4OHYtMC4wOHYtMC45NDF2LTAuMTZjMC4wNi0zLjYwNCwwLjU4MS03LjI2OCwxLjQ4MS0xMC44NTIgICAgYzIuMzAyLTkuMTg5LDcuMTQ2LTE3LjgxOCwxMy42MTMtMjQuMTQ1QzI3OS44OCwxOTUuODg3LDI4Ny43NjgsMTkxLjg4MywyOTYuMjU3LDE5MS44MjIgTTI1My41NTIsMjM3LjE0OWwtMC4wMiwxLjE2MWwwLjAyLDAuMTggICAgYy0wLjEyLDguNjctMy44NjQsMTcuMDk4LTEwLjMzMSwyNS4wMjdjLTAuNCwwLjUtMC44MjEsMS0xLjI0LDEuNDhjLTguMzA5LDkuNTMtMjAuNTIyLDE4LjM3OS0zNS4wMzcsMjYuMTQ3ICAgIGMtMC4yMTksMC4xMDEtMC40MTksMC4yMi0wLjYsMC4zOGMtMTYuMjM3LDguNTI5LTM1LjI1NiwxNS41OTctNTQuNzU3LDIwLjYwMmMtMjQuNTA1LDYuMjQ3LTQ5LjcxMiw5LjE4OS03MS4xMzQsNy42NDggICAgYy0yMS4wNjMtMS41MjEtMzguMzU5LTcuMzY4LTQ3LjQ0OS0xOC42MTljLTcuNjg5LTkuNTEtOS41Ny0yMy4xMDQtMy4wMDQtNDEuNTQzYzEuMTgxLDI4LjA4OCwxMC4zMTEsMzkuMTIsMjQuMTQ2LDM5LjU0MSAgICBjMjMuNTY0LDAuNzIxLDYwLjQ0Mi0zMS44MzQsOTMuOTE3LTYxLjM2NGMyNC42MDUtMjEuNzIzLDQ3LjM0OS00MS43ODMsNjAuNTQyLTQ1LjA4N2MyLjQyMy0wLjYwMSw0LjgyNi0wLjg4MSw3LjEyOC0wLjg4MSAgICBjOC40ODksMC4wOCwxNi4zNzcsNC4wNjQsMjIuNzI0LDEwLjI5MWM2LjQ0Nyw2LjMyNiwxMS4yOTIsMTQuOTU1LDEzLjYxMywyNC4xNDUgICAgQzI1Mi45NzMsMjI5Ljg2MSwyNTMuNDczLDIzMy41MjUsMjUzLjU1MiwyMzcuMTQ5eiBNMjY2LjYwNSwyNjguNDAyYy00LjcyNC01LjQyNi04LjMyOC0xMS4wOTItMTAuNTMtMTYuOTU4ICAgIGMtMi4xNjIsNS43ODYtNS43MDcsMTEuNDEyLTEwLjQxMSwxNi43OThjLTguMDY4LDkuMjI5LTE5LjU2LDE3LjgzOC0zMy4xOTUsMjUuNDY2YzUuNjg2LDQuMDY0LDEyLjAxMyw3LjM2OCwxOC43NzksOS43MSAgICBjNy43MDksMi42NjMsMTYuMDM3LDQuMTA0LDI0Ljc0Niw0LjEwNHMxNy4wNTgtMS40NDEsMjQuNzQ2LTQuMTA0YzYuNzg3LTIuMzYyLDEzLjExNS01LjY0NiwxOC44LTkuNzEgICAgQzI4Ni4xMDYsMjg2LjIsMjc0LjY3NCwyNzcuNjUxLDI2Ni42MDUsMjY4LjQwMnoiIHN0eWxlPSJmaWxsLXJ1bGU6ZXZlbm9kZDtjbGlwLXJ1bGU6ZXZlbm9kZDsiLz48L2c+PC9nPjxnIGlkPSJMYXllcl8xIi8+PC9zdmc+'> \
+            <img src='content/${section.name}/${section.icon.base}'> \
           </div> \
           <div class="mm-sections__title">${section.name}</div> \
         </a> \
@@ -59,10 +60,15 @@ export class SidebarComponent {
       let itemsList = ""
       
       section.filesOutput.forEach((file:any, index2:number) => {
+        let thumb = ""
+        if(typeof file.imagesOutput[0] !== 'undefined') {
+          thumb = `<div class="mm-image-thumb"><img src="${file.imagesOutput[0].directory}/${file.imagesOutput[0].base}" alt="${file.imagesOutput[0].name}"></div>`
+        }
         itemsList += `<li class="mm-item"> \
           <a onclick="_sidebar.changeLevel(3, ${index}, ${index2})"> \
-            <h3>${file.name}</h3> \
-            ${file.tpContent.substring(0,100)}...
+            ${thumb}
+            <div class="mm-detail-short">${file.tpContent}</div>
+            
           </a> \
         </li>`
         let imagesList = ""
@@ -72,7 +78,7 @@ export class SidebarComponent {
 
         
         detailList += `<div class="mm-item mm-detail-item" id="mm-detail-${index}-${index2}"><div class="mm-sidebar__header mm-detail__header">
-            <div class="mm-images-list">${imagesList}</div>
+            <div class="mm-images-list siema">${imagesList}</div>
           </div>
           <div class="mm-detail__text">
           ${file.tpContent}  
@@ -89,6 +95,11 @@ export class SidebarComponent {
     if(this.#nodeFirstLevel && this.#nodeThirdLevel) {
       this.#nodeFirstLevel.innerHTML = sectionsList
       this.#nodeThirdLevel.innerHTML = detailList
+
+      const mySiema = new Siema({
+  selector: '.siema'
+})
+      console.log(mySiema)
     }
   }
 

@@ -33,7 +33,7 @@ export default {
   mode: isProduction ? "production" : "development",
   target: "web",
 
-  context: PATH("./src"),
+  context: PATH("./"),
 
   entry: {
     app: PATH("./src/main.ts"),
@@ -145,23 +145,19 @@ export default {
 
     new CopyPlugin({
       patterns: [{
-        from: PATH("./content") + "/**/*.jpg",
+        from: "content/**/*.jpg",
+      },{
+        from: "content/**/*.png",
+      },{
+        from: "content/output.json",
         to: "content"
       },{
-        from: PATH("./content") + "/**/*.png",
-        to: "content"
-      },{
-        from: PATH("./content/output.json"),
-        to: "content"
-      },{
-        from: PATH("./assets") + "/**/*",
-        to: "assets"
+        from: "assets/**/*",
       }],
     }),
   ]),
 
   optimization: {
-    noEmitOnErrors: true,
     removeEmptyChunks: true,
     runtimeChunk: "single",
     splitChunks: { chunks: "all" },
