@@ -2,6 +2,7 @@
 const ANIMATION_PROPERTY = "grid-template-columns"
 const ANIMATION_STEP_DELTA = 40;
 import Siema from 'siema';
+import GLightbox from 'glightbox';
 
 export class SidebarComponent {
 
@@ -39,6 +40,7 @@ export class SidebarComponent {
 		  let json = await response.json();
       this.data = json
       this.renderContent()
+      GLightbox({touchNavigation: true, loop: true});
 		} else {
 		  console.log("Ошибка HTTP: " + response.status);
 		}
@@ -73,7 +75,7 @@ export class SidebarComponent {
         </li>`
         let imagesList = ""
         file.imagesOutput.forEach((image:any) => {
-          imagesList += `<div class="mm-image"><img src="${image.directory}/${image.base}" alt="${image.name}"></div>`
+          imagesList += `<div class="mm-image"><a href="${image.directory}/${image.base}" class="glightbox detail_images--link" data-gallery="gallery1"><img src="${image.directory}/${image.base}" alt="${image.name}"></a></div>`
         })
 
         

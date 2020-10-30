@@ -7,6 +7,8 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
 
+    "noImplicitAny": false,
+
     "rootDir": ".",
     "baseUrl": ".",
     "outDir": "./artifacts/out-tsc",
