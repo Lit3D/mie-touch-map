@@ -67,6 +67,13 @@ export class MapComponent {
       this.#displayImageX = this.#displayImageCurrentX;
       this.#displayImageY = this.#displayImageCurrentY;
     });
+
+    // Этот код выводит координаты по клику. Можно его закомментить
+    window.addEventListener('mouseup', (event) => {
+        let x = Math.round(event.clientX - this.#imageContainer.getBoundingClientRect().left - this.#displayImageCurrentX + (this.#displayImage.getBoundingClientRect().width - this.#imageContainer.getBoundingClientRect().width) / 2);
+        let y = Math.round(event.clientY - this.#imageContainer.getBoundingClientRect().top - this.#displayImageCurrentY + (this.#displayImage.getBoundingClientRect().height - this.#imageContainer.getBoundingClientRect().height) / 2 );
+        window.alert(`${x}, ${y}`);
+    });
   }
 
   private onImageLoad(): void {
