@@ -3,7 +3,6 @@
 import { MapComponent } from "./components"
 import { SidebarComponent } from "./components"
 
-
 void async function main(){
 
   const sidebar = new SidebarComponent(".sidebar")

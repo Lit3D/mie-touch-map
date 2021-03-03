@@ -1,5 +1,8 @@
 
 .map {
+  --image-width: 2350px;
+  --image-height: 2700px;
+
   width: 100%;
   min-width: 100%;
   max-width: 100%;
@@ -12,8 +15,7 @@
 }
 
 .map__image {
-  --image-width: 2350px;
-  --image-height: 2700px;
+
 
   display: block;
   position: absolute;
@@ -33,4 +35,22 @@
 .map__image--active {
   z-index: 100;
   opacity: 1;
+}
+
+.map__mark {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  transform: translateY(-100%) translateX(-50%);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 59 59'%3E%3Cpath d='M44.5 15c0-8.271-6.729-15-15-15s-15 6.729-15 15c0 7.934 6.195 14.431 14 14.949V58a1 1 0 102 0V29.949c7.805-.518 14-7.015 14-14.949zm-20 0c-2.206 0-4-1.794-4-4s1.794-4 4-4 4 1.794 4 4-1.794 4-4 4z'/%3E%3C/svg%3E");
+}
+
+.map__marks-container {
+  display: block;
+  position: absolute;
+  top: calc(50% - var(--image-width) / 2 + 113px);
+  left: calc(50% - var(--image-height) / 2 + 172px);
+  width: var(--image-width);
+  height: var(--image-height);
+  z-index: 200;
 }

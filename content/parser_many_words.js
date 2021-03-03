@@ -96,9 +96,17 @@ void async function main() {
         imagesOutput.push(imageOutput)
       }
 
+      const txtFile = (await getAllFilesRecursive(data.dir)).filter(fullPath => (path.extname(fullPath) === ".txt"))
+      let coord = ""
+      if(txtFile && txtFile.length > 0) {
+        console.log(txtFile)
+          coord = await fs.readFile(txtFile[0], 'utf8');
+      }
+
       const outObj = {
         ...data,
         directory: /[^\/\\]+$/.exec(data.dir)[0].replace(/\\+/g,'/'),
+        coord,
         tpContent,
         imagesOutput
       }

@@ -1,4 +1,5 @@
 import Hammer from 'hammerjs'
+import { MarksComponent } from "../marks"
 
 export class MapComponent {
 
@@ -74,6 +75,8 @@ export class MapComponent {
         let y = Math.round(event.clientY - this.#imageContainer.getBoundingClientRect().top - this.#displayImageCurrentY + (this.#displayImage.getBoundingClientRect().height - this.#imageContainer.getBoundingClientRect().height) / 2 );
         window.alert(`${x}, ${y}`);
     });
+
+    new MarksComponent(this.panContainer)
   }
 
   private onImageLoad(): void {
@@ -103,7 +106,9 @@ export class MapComponent {
     }
   }
   
-  
+  get panContainer() {
+    return this.#panContainer
+  }
   
   private clamp(value: number, min: number, max: number): number {
     return Math.min(Math.max(min, value), max);
