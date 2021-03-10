@@ -48,8 +48,10 @@
 .map__marks-container {
   display: block;
   position: absolute;
-  top: calc(50% - var(--image-width) / 2 + 113px);
-  left: calc(50% - var(--image-height) / 2 + 172px);
+  /* top: calc(50% - var(--image-width) / 2 + 113px);
+  left: calc(50% - var(--image-height) / 2 + 172px); */
+  top: calc(50% - var(--image-width) / 2);
+  left: calc(50% - var(--image-height) / 2);
   width: var(--image-width);
   height: var(--image-height);
   z-index: 200;
