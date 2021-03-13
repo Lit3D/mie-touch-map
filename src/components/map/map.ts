@@ -70,13 +70,14 @@ export class MapComponent {
     });
 
     // Этот код выводит координаты по клику. Можно его закомментить
-    window.addEventListener('mouseup', (event) => {
-        let x = Math.round(event.clientX - this.#imageContainer.getBoundingClientRect().left - this.#displayImageCurrentX + (this.#displayImage.getBoundingClientRect().width - this.#imageContainer.getBoundingClientRect().width) / 2);
-        let y = Math.round(event.clientY - this.#imageContainer.getBoundingClientRect().top - this.#displayImageCurrentY + (this.#displayImage.getBoundingClientRect().height - this.#imageContainer.getBoundingClientRect().height) / 2 );
-        window.alert(`${x}, ${y}`);
-    });
+    // window.addEventListener('mouseup', (event) => {
+    //     let x = Math.round(event.clientX - this.#imageContainer.getBoundingClientRect().left - this.#displayImageCurrentX + (this.#displayImage.getBoundingClientRect().width - this.#imageContainer.getBoundingClientRect().width) / 2);
+    //     let y = Math.round(event.clientY - this.#imageContainer.getBoundingClientRect().top - this.#displayImageCurrentY + (this.#displayImage.getBoundingClientRect().height - this.#imageContainer.getBoundingClientRect().height) / 2 );
+    //     window.alert(`${x}, ${y}`);
+    // });
 
-    new MarksComponent(this.panContainer)
+    const marks = new MarksComponent(this.panContainer)
+    ;(<any>window)._marks = marks
   }
 
   private onImageLoad(): void {
@@ -133,6 +134,13 @@ export class MapComponent {
   
     this.#rangeMaxY = Math.round(this.#rangeY / 2);
     this.#rangeMinY = 0 - this.#rangeMaxY;
+  }
+
+  center(x: number,y: number) {
+    this.#displayImageX = (x - this.#displayImage.clientWidth / 2) * -1;
+    this.#displayImageY = (y - this.#displayImage.clientHeight / 2) * -1;
+    console.log(this.#displayImageX, this.#displayImageY)
+    this.updateDisplayImage(this.#displayImageX, this.#displayImageY,this.#displayImageCurrentScale)
   }
   
 }

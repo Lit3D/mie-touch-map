@@ -105,6 +105,8 @@ export class SidebarComponent {
       let sidebar:HTMLElement = <HTMLElement>document.querySelector('.sidebar')
       sidebar.dataset.level = level
 
+      ;(<any>window)._marks.dropActive()
+
       if(section >= 0) {
         document.querySelectorAll('.mm-items-section').forEach((sect:any) => {
           sect.classList.remove("visible")
@@ -118,6 +120,9 @@ export class SidebarComponent {
         })
         let selItem:HTMLElement = <HTMLElement>document.querySelector('#mm-detail-' + section + '-' + item)
         selItem.classList.add("visible")
+
+        ;(<any>window)._marks.active(section, item)
+
           const mySiema = new Siema({
             selector: '#mm-detail-' + section + '-' + item +' .siema'
           })

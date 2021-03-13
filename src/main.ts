@@ -19,6 +19,7 @@ void async function main(){
   // })
 
   const map = new MapComponent()
+  ;(<any>window)._map = map
 
   //console.log(timeline)
   console.log(map)
