@@ -73,7 +73,7 @@ export class MapComponent {
     ;(<any>window)._marks = marks
 
     //Этот код выводит координаты по клику. Можно его закомментить
-    marks.container.addEventListener('mouseup', ({offsetX, offsetY}) => {
+    /*marks.container.addEventListener('mouseup', ({offsetX, offsetY}) => {*/
 
         // let x = Math.round(event.clientX - this.#imageContainer.getBoundingClientRect().left - 
         //   this.#displayImageCurrentX + (this.#displayImage.getBoundingClientRect().width - 
@@ -81,10 +81,13 @@ export class MapComponent {
         // let y = Math.round(event.clientY - this.#imageContainer.getBoundingClientRect().top - 
         //   this.#displayImageCurrentY + (this.#displayImage.getBoundingClientRect().height - 
         //     this.#imageContainer.getBoundingClientRect().height) / 2 );
-        window.alert(`${offsetX}, ${offsetY}`);
+
+        /*window.alert(`${offsetX}, ${offsetY}`);*/
+
         // console.dir(maeventrks.container.getBoundingClientRect());
         // console.dir(event);
-    },{ passive: true});
+
+    /*},{ passive: true});*/
 
     
   }
