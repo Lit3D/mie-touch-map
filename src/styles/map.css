@@ -52,7 +52,7 @@
 .map__marks-container {
   display: block;
   position: absolute;
-  top: calc(50% - var(--image-width) / 2 + 313px);
+  top: calc(50% - var(--image-width) / 2 + 314px);
   left: calc(50% - var(--image-height) / 2 + 176px);
   /* top: calc(50% - var(--image-width) / 2);
   left: calc(50% - var(--image-height) / 2); */

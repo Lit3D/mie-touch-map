@@ -11,6 +11,10 @@ export class MarksComponent {
     this.getContent()
   }
 
+  get container() {
+    return this.#container
+  }
+
   private async getContent() {
     let response = await fetch(this.contentFile);
 

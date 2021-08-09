@@ -69,15 +69,24 @@ export class MapComponent {
       this.#displayImageY = this.#displayImageCurrentY;
     });
 
-    // Этот код выводит координаты по клику. Можно его закомментить
-    // window.addEventListener('mouseup', (event) => {
-    //     let x = Math.round(event.clientX - this.#imageContainer.getBoundingClientRect().left - this.#displayImageCurrentX + (this.#displayImage.getBoundingClientRect().width - this.#imageContainer.getBoundingClientRect().width) / 2);
-    //     let y = Math.round(event.clientY - this.#imageContainer.getBoundingClientRect().top - this.#displayImageCurrentY + (this.#displayImage.getBoundingClientRect().height - this.#imageContainer.getBoundingClientRect().height) / 2 );
-    //     window.alert(`${x}, ${y}`);
-    // });
-
     const marks = new MarksComponent(this.panContainer)
     ;(<any>window)._marks = marks
+
+    //Этот код выводит координаты по клику. Можно его закомментить
+    marks.container.addEventListener('mouseup', ({offsetX, offsetY}) => {
+
+        // let x = Math.round(event.clientX - this.#imageContainer.getBoundingClientRect().left - 
+        //   this.#displayImageCurrentX + (this.#displayImage.getBoundingClientRect().width - 
+        //     this.#imageContainer.getBoundingClientRect().width) / 2);
+        // let y = Math.round(event.clientY - this.#imageContainer.getBoundingClientRect().top - 
+        //   this.#displayImageCurrentY + (this.#displayImage.getBoundingClientRect().height - 
+        //     this.#imageContainer.getBoundingClientRect().height) / 2 );
+        window.alert(`${offsetX}, ${offsetY}`);
+        // console.dir(maeventrks.container.getBoundingClientRect());
+        // console.dir(event);
+    },{ passive: true});
+
+    
   }
 
   private onImageLoad(): void {
